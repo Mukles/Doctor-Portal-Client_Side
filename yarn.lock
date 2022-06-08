@@ -3502,6 +3502,28 @@
     "whatwg-mimetype" "^2.3.0"
     "whatwg-url" "^8.0.0"
 
+"datatable@^2.0.2":
+  "integrity" "sha512-Rq6dyN6/LaD0vmtEVfqzpXqb9VmkdBnQgb5ub5OB2o2G2msvbDvas2wX/LO9FzQyvRmoQraS40vxhRqJ4NNCvw=="
+  "resolved" "https://registry.npmjs.org/datatable/-/datatable-2.0.2.tgz"
+  "version" "2.0.2"
+  dependencies:
+    "underscore" "1.4.x"
+
+"datatables.net-dt@^1.12.1":
+  "integrity" "sha512-HYsHbSYqOqlgsgjKMH/kkCB5455t51GmmtXRxgnDMRbjPLEIKo5CZmAlUe5mdD/RVPRtAUaj5K3SDlkEZ1bUmw=="
+  "resolved" "https://registry.npmjs.org/datatables.net-dt/-/datatables.net-dt-1.12.1.tgz"
+  "version" "1.12.1"
+  dependencies:
+    "datatables.net" ">=1.11.3"
+    "jquery" ">=1.7"
+
+"datatables.net@^1.12.1", "datatables.net@>=1.11.3":
+  "integrity" "sha512-e6XAMUoV41JdQPS/r9YRfRcmTPcCVvyZbWI+xog1Zg+kjVliMQbEkvWK5XFItmi64Cvwg+IqsZbTUJ1KSY3umA=="
+  "resolved" "https://registry.npmjs.org/datatables.net/-/datatables.net-1.12.1.tgz"
+  "version" "1.12.1"
+  dependencies:
+    "jquery" ">=1.7"
+
 "debug@^2.6.0":
   "integrity" "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA=="
   "resolved" "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz"
@@ -5690,7 +5712,7 @@
     "import-local" "^3.0.2"
     "jest-cli" "^27.5.1"
 
-"jquery@^3.6.0":
+"jquery@^3.6.0", "jquery@>=1.7":
   "integrity" "sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw=="
   "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.6.0.tgz"
   "version" "3.6.0"
@@ -8461,6 +8483,11 @@
     "has-bigints" "^1.0.2"
     "has-symbols" "^1.0.3"
     "which-boxed-primitive" "^1.0.2"
+
+"underscore@1.4.x":
+  "integrity" "sha1-YaajIBBiKvoHljvzJSA88SI51gQ="
+  "resolved" "https://registry.npmjs.org/underscore/-/underscore-1.4.4.tgz"
+  "version" "1.4.4"
 
 "unicode-canonical-property-names-ecmascript@^2.0.0":
   "integrity" "sha512-yY5PpDlfVIU5+y/BSCxAJRBIS1Zc2dDG3Ujq+sR0U+JjUevW2JhocOF+soROYDSaAezOzOKuyyixhD6mBknSmQ=="
