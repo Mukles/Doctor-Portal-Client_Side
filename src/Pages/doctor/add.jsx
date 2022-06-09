@@ -6,7 +6,7 @@ const AddDoctor = () => {
     <div className="px-5 py-10 ml-auto shadow-sm w-[calc(100%-304px)]">
       <Title text={"Add Doctor"} />
       <div className="mt-6 flex flex-col space-y-10">
-        <BasicInfo text={"Doctor"} />
+        <BasicInfo title={"Doctor"} text="Join" />
       </div>
     </div>
   );

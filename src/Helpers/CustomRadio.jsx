@@ -9,30 +9,34 @@ const CustomeRaido = ({
   val_2,
 }) => {
   return (
-    <div className="w-1/2 mt-4">
+    <div className="w-1/2">
       <span className="text-sm label-text ">{title}</span> <br />
-      <div className="flex space-x-3 items-center mt-3">
+      <div className="flex space-x-3 items-center mt-4">
         <div className="flex items-center space-x-2">
           <input
-            className="radio"
+            className="radio radio-sm"
             type="radio"
             name={name}
             id={ID_1}
             value={val_1}
             checked
           />
-          <label htmlFor={ID_1}>{text_1}</label>
+          <label className="text-sm" htmlFor={ID_1}>
+            {text_1}
+          </label>
         </div>
         <div className="flex items-center space-x-2">
           <input
-            className="radio"
+            className="radio radio-sm"
             type="radio"
             name={name}
             id={ID_2}
             value={val_2}
             checked
           />
-          <label htmlFor={ID_2}>{text_2}</label>
+          <label className="text-sm" htmlFor={ID_2}>
+            {text_2}
+          </label>
         </div>
       </div>
     </div>

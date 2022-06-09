@@ -1,8 +1,12 @@
-const CustomSelect = ({ children }) => {
+const CustomSelect = ({ children, title }) => {
   return (
     <div className="w-1/2">
-      <label htmlFor="text-sm">Select Payment Option</label>
-      <select class="select w-full mt-2">{children}</select>
+      <label className="text-sm" htmlFor="">
+        {title}
+      </label>
+      <select class="select font-normal w-full mt-2 input py-2 block focus:outline-none h-11 rounded-md input-bordered ">
+        {children}
+      </select>
     </div>
   );
 };
