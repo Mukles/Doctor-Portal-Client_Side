@@ -91,6 +91,15 @@ const Sidebar = () => {
       ],
     },
   ];
+  const clickHanlder = function (e) {
+    if (e.target.nextSibling.style.height !== "auto") {
+      e.target.nextSibling.style.height = "auto";
+      e.target.nextSibling.style.transform = "scaleY(1)";
+    } else {
+      e.target.nextSibling.style.height = "0";
+      e.target.nextSibling.style.transform = "scaleY(0)";
+    }
+  };
   return (
     <div className="h-[calc(100vh-40px)] fixed w-72 bg-primary rounded-md left-4 top-6">
       <div className="flex space-x-6 items-center justify-center mb-6 py-3 ">
@@ -99,16 +108,28 @@ const Sidebar = () => {
       </div>
       <ul className="flex h-3/4 flex-grow flex-col space-y-5 text-white font-semibod py-3 px-4 overflow-y-auto">
         {menuBar.map((menu) => (
-          <li className="flex-grow cursor-pointer text-lg" key={menu.id}>
-            <div className="flex w-full justify-between items-center">
-              <span className="flex space-x-4 items-center">
+          <li
+            className="flex-grow cursor-pointer text-lg dropdown"
+            key={menu.id}
+          >
+            <div
+              tabIndex={menu.id}
+              onClick={clickHanlder}
+              className="flex w-full justify-between items-center"
+            >
+              <span className="flex space-x-4 items-center pointer-events-none">
                 <i className={`${menu.icon}`}></i>
                 <p>{menu.value}</p>
               </span>
-              {menu.submenu && <i className="fa-solid fa-angle-down"></i>}
+              {menu.submenu && (
+                <i className="fa-solid fa-angle-down pointer-events-none"></i>
+              )}
             </div>
             {menu.submenu && (
-              <ul className="submenu ml-8 mt-2 flex flex-col space-y-3">
+              <ul
+                tabIndex={menu.id}
+                className="overflow-hidden ease-in duration-300 submenu ml-8 mt-2 flex flex-col space-y-3"
+              >
                 {menu.submenu.map((item, idx) => (
                   <li key={idx} className="text-sm font-bolder">
                     {item.value}

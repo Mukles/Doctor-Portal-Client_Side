@@ -1,3 +1,5 @@
+import { ErrorMessage, Field } from "formik";
+
 const CustomeRaido = ({
   title,
   name,
@@ -13,32 +15,47 @@ const CustomeRaido = ({
       <span className="text-sm label-text ">{title}</span> <br />
       <div className="flex space-x-3 items-center mt-4">
         <div className="flex items-center space-x-2">
-          <input
-            className="radio radio-sm"
-            type="radio"
-            name={name}
-            id={ID_1}
-            value={val_1}
-            checked
-          />
-          <label className="text-sm" htmlFor={ID_1}>
-            {text_1}
-          </label>
+          <Field name={name}>
+            {({ field }) => (
+              <>
+                <input
+                  {...field}
+                  className="radio radio-sm"
+                  type="radio"
+                  id={ID_1}
+                  value={val_1}
+                />
+                <label className="text-sm" htmlFor={ID_1}>
+                  {text_1}
+                </label>
+              </>
+            )}
+          </Field>
         </div>
         <div className="flex items-center space-x-2">
-          <input
-            className="radio radio-sm"
-            type="radio"
-            name={name}
-            id={ID_2}
-            value={val_2}
-            checked
-          />
-          <label className="text-sm" htmlFor={ID_2}>
-            {text_2}
-          </label>
+          <Field name={name}>
+            {({ field }) => (
+              <>
+                <input
+                  {...field}
+                  className="radio radio-sm"
+                  type="radio"
+                  id={ID_2}
+                  value={val_2}
+                />
+                <label className="text-sm" htmlFor={ID_2}>
+                  {text_2}
+                </label>
+              </>
+            )}
+          </Field>
         </div>
       </div>
+      <ErrorMessage
+        className="text-sm text-red-700"
+        name={name}
+        component={"span"}
+      />
     </div>
   );
 };

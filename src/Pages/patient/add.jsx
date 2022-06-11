@@ -1,17 +1,49 @@
 import BasicInfo from "../../Helpers/BasicInfo";
+import Button from "../../Helpers/button";
 import CustomeRaido from "../../Helpers/CustomRadio";
 import CustomSelect from "../../Helpers/CustomSelect";
 import Inputfield from "../../Helpers/InputField";
+import Layout from "../../Helpers/Layout";
 import Subtitle from "../../Helpers/Subtitle";
 import Title from "../../Helpers/Title";
 
 const AddPatient = () => {
   return (
-    <div className="px-5 py-10 ml-auto shadow-sm w-[calc(100%-304px)]">
+    <Layout>
       <Title text={"Add Patients"} />
       <div className="mt-6 flex flex-col space-y-10">
-        <BasicInfo title="Patient" text="Admit" />
-        <div className="bg-white p-4 flex flex-col space-y-3 shadow-lg rounded-md">
+        <BasicInfo>
+          <Subtitle className="mt-3" text={`Patient Basic Inforamtion`} />
+          <div className="flex justify-center space-x-4">
+            <Inputfield Text={"First Name"} type="text" Id={"firstName"} />
+            <Inputfield Text={"Last Name"} type="text" Id={"lastName"} />
+          </div>
+          <div className="flex justify-center space-x-4">
+            <Inputfield Text={"Phone number"} type="phone" Id={"phone"} />
+            <Inputfield Text={"Email"} type="email" Id={"email"} />
+          </div>
+          <div className="flex justify-center space-x-4">
+            <Inputfield Text={`Admit date`} type="date" Id={"Admit-date"} />
+            <Inputfield Text={`Admit Time`} type="time" Id={"time"} />
+          </div>
+          <div className="flex justify-center space-x-4">
+            <div className="w-1/2 flex items-center">
+              <input type="file" name="form-control" id="" />
+            </div>
+            <CustomeRaido
+              title={"Gender"}
+              name="gender"
+              text_1={"Male"}
+              text_2={"Female"}
+              val_1="M"
+              val_2={"F"}
+              ID_1="Male"
+              ID_2={"Female"}
+            />
+          </div>
+          <Button type={"button"} text="Next" />
+        </BasicInfo>
+        <BasicInfo>
           <Subtitle className="mt-3" text={"Registration Information"} />
           <div className="flex justify-center space-x-4">
             <CustomSelect title={"Select Payment Option"}>
@@ -48,9 +80,9 @@ const AddPatient = () => {
             </CustomSelect>
             <Inputfield type={"text"} Text="Advance Amount" Id={"advance"} />
           </div>
-        </div>
+        </BasicInfo>
       </div>
-    </div>
+    </Layout>
   );
 };
 

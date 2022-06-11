@@ -1,6 +1,6 @@
-const Subtitle = ({ text }) => {
+const Subtitle = ({ text, Id }) => {
   return (
-    <div className="title-mini my-3">
+    <div id={Id} className="title-mini my-3">
       <h2 className="text-lg font-semibold">{text}</h2>
     </div>
   );

@@ -1,10 +1,11 @@
+import Layout from "../../Helpers/Layout";
 import Table from "../../Helpers/Table";
 
 const PatientsList = () => {
   return (
-    <div className="px-5 py-10 ml-auto shadow-sm w-[calc(100%-304px)]">
+    <Layout>
       <Table />
-    </div>
+    </Layout>
   );
 };
 

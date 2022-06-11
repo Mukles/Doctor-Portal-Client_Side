@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import AddDoctor from "./Pages/doctor/add";
 import Appointment from "./Pages/doctor/Appointment";
 import DoctorList from "./Pages/doctor/DoctorList";
+import Profile from "./Pages/doctor/profile";
 import Home from "./Pages/Home/home";
 import AddPatient from "./Pages/patient/add";
 import PatientsList from "./Pages/patient/list";
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/doctor">
           <Route path="add" element={<AddDoctor />} />
           <Route path="list" element={<DoctorList />}></Route>
+          <Route path="profile" element={<Profile />} />
           <Route path="appointment" element={<Appointment />} />
         </Route>
         <Route path="*" element={<NotFound />}></Route>
