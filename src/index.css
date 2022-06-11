@@ -9,4 +9,10 @@
     font-family: "Open Sans", sans-serif;
     scroll-behavior: smooth;
   }
+  .sidebar {
+    left: -100%;
+  }
+  .sidebar.active {
+    left: 0;
+  }
 }

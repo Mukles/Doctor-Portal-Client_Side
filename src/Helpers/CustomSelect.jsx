@@ -2,7 +2,7 @@ import { ErrorMessage, Field } from "formik";
 
 const CustomSelect = ({ children, title, name }) => {
   return (
-    <div className="w-1/2">
+    <div className="w-full sm:w-1/2">
       <Field name={name}>
         {({ field }) => (
           <>

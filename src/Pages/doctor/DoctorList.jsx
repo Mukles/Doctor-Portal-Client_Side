@@ -5,7 +5,7 @@ const DoctorList = () => {
   return (
     <Layout>
       <Title text={"Doctor List"} />
-      <div className="grid grid-cols-3 gap-5 mt-5">
+      <div className="grid lg:grid-cols-3 gap-5 mt-5">
         {Array(8)
           .fill("")
           .map((item, idx) => (

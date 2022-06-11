@@ -3,7 +3,7 @@ const Table = ({ data }) => {
     <div className="">
       <div className="pb-5">
         <h2 className="text-2xl font-semibold pb-3">Appointment</h2>
-        <div className="justify-between flex items-center">
+        <div className="flex-col sm:flex-row space-y-3 sm:space-y-0 justify-between flex items-center">
           <div className="pb-1 flex space-x-3 items-center">
             <span>Show</span>
             <select className="border-2 rounded broder-primary">

@@ -11,7 +11,7 @@ const CustomeRaido = ({
   val_2,
 }) => {
   return (
-    <div className="w-1/2">
+    <div className="w-full sm:w-1/2">
       <span className="text-sm label-text ">{title}</span> <br />
       <div className="flex space-x-3 items-center mt-4">
         <div className="flex items-center space-x-2">

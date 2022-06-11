@@ -82,7 +82,7 @@ const AddDoctor = () => {
             <Form>
               <BasicInfo>
                 <Subtitle className="mt-3" text={`Doctor Basic Inforamtion`} />
-                <div className="flex justify-center space-x-4">
+                <div className="flex flex-col sm:flex-row justify-center sm:space-x-4">
                   <Inputfield
                     Text={"First Name"}
                     type="text"
@@ -90,15 +90,15 @@ const AddDoctor = () => {
                   />
                   <Inputfield Text={"Last Name"} type="text" Id={"lastName"} />
                 </div>
-                <div className="flex justify-center space-x-4">
+                <div className="flex flex-col sm:flex-row justify-center sm:space-x-4">
                   <Inputfield Text={"Phone number"} type="phone" Id={"phone"} />
                   <Inputfield Text={"Email"} type="email" Id={"email"} />
                 </div>
-                <div className="flex justify-center space-x-4">
+                <div className="flex flex-col sm:flex-row justify-center sm:space-x-4">
                   <Inputfield Text={`Join date`} type="date" Id={"joinDate"} />
                   <Inputfield Text={`Join Time`} type="time" Id={"joinTime"} />
                 </div>
-                <div className="flex justify-center space-x-4">
+                <div className="flex flex-col sm:flex-row justify-center sm:space-x-4">
                   <div className="w-1/2 flex items-center">
                     <input type="file" name="form-control" id="" />
                   </div>
@@ -114,14 +114,13 @@ const AddDoctor = () => {
                   />
                 </div>
                 <Button href={"Personal"} type={"button"} text="Next" />
-              </BasicInfo>
-              <BasicInfo>
+
                 <Subtitle
                   Id={"Personal"}
                   className="mt-3"
                   text={`Personal Inforamtion`}
                 />
-                <div className="flex justify-center space-x-4">
+                <div className="flex flex-col sm:flex-row justify-center sm:space-x-4">
                   <CustomSelect
                     name="paymentType"
                     title={"Doctor Payment Option"}
@@ -137,7 +136,7 @@ const AddDoctor = () => {
                     Id={"cabinNumber"}
                   />
                 </div>
-                <div className="flex justify-center space-x-4">
+                <div className="flex flex-col sm:flex-row justify-center sm:space-x-4">
                   <Inputfield
                     Text={"Speciality"}
                     type="text"
@@ -155,14 +154,13 @@ const AddDoctor = () => {
                   />
                 </div>
                 <Button text={"Next"} href="Authentication" type={"button"} />
-              </BasicInfo>
-              <BasicInfo>
+
                 <Subtitle
                   Id={"Authentication"}
                   className="mt-3"
                   text={`Authentication Inforamtion`}
                 />
-                <div className="flex justify-center space-x-4">
+                <div className="flex flex-col sm:flex-row justify-center sm:space-x-4">
                   <Inputfield
                     type={"text"}
                     Id={"userName"}
@@ -174,7 +172,7 @@ const AddDoctor = () => {
                     Text="Password"
                   />
                 </div>
-                <div className="flex justify-center space-x-4">
+                <div className="flex flex-col sm:flex-row justify-center sm:space-x-4">
                   <Inputfield
                     type={"password"}
                     Id={"confirmPassword"}
