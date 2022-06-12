@@ -15,4 +15,21 @@
   .sidebar.active {
     left: 0;
   }
+
+  .nested-nav {
+    max-height: 0;
+  }
+
+  .nested-nav.active {
+    max-height: 10rem;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .background-img {
+      background-image: url("http://localhost:3000//bg.jpg");
+      background-repeat: no-repeat;
+      background-position: 91% 1%;
+      background-size: 65% 100%;
+    }
+  }
 }

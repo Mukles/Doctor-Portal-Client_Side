@@ -9,7 +9,7 @@ const DoctorList = () => {
         {Array(8)
           .fill("")
           .map((item, idx) => (
-            <div className="card bg-base-100 shadow-xl">
+            <div className="card bg-base-100 shadow-xl" key={idx}>
               <figure>
                 <div className="mt-4 border-2 border-yelllow-400 h-28 w-28 rounded-full p-1 flex items-center justify-center">
                   <img

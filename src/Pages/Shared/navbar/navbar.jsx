@@ -1,4 +1,20 @@
+import { signOut } from "firebase/auth";
+import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../../firebase.init";
+
 const Navbar = () => {
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+  console.log(user);
+  if (loading) {
+    return (
+      <div className="h-screen w-full bg-primary flex items-center justify-center">
+        <h1 className="text-secondary text-xl font-semibold"> Loading...</h1>
+      </div>
+    );
+  }
   return (
     <div className="navbar space-y-4 flex-col md:flex-row bg-secondary z-10 w-full lg:w-[calc(100%-304px)] justify-between lg:ml-auto px-5">
       <div className="navbar-start w-full flex-1">
@@ -68,38 +84,39 @@ const Navbar = () => {
             <div className="border-2 border-yelllow-400 h-14 w-14 rounded-full p-1 flex items-center justify-center">
               <img
                 className="w-13 h-13 rounded-full"
-                src="https://www.pixelwibes.com/template/ihealth/html/dist/assets/images/profile_av.png"
+                src={`${
+                  user?.photoURL
+                    ? user?.photoURL
+                    : "https://www.pixelwibes.com/template/ihealth/html/dist/assets/images/profile_av.png"
+                }`}
                 alt=""
                 srcSet=""
               />
             </div>
           </div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </div>
-        <div className="md:hidden block pointer-events-auto">
-          <label
-            className="btn btn-circle swap swap-rotate"
-            onClick={(event) => {
-              event.preventDefault();
-              const element = document.querySelector(".sidebar");
-              if (element.classList.contains("active")) {
-                element.classList.remove("active");
-              } else {
-                element.classList.add("active");
-              }
+          <div
+            title={`${user ? "logout" : "login"}`}
+            className="cursor-pointer"
+            onClick={() => {
+              user ? signOut(auth) : navigate("/account/login");
             }}
           >
+            <i className="fa-solid fa-arrow-right-from-bracket"></i>
+          </div>
+        </div>
+        <div
+          className="md:hidden block"
+          onClick={(event) => {
+            event.preventDefault();
+            const element = document.querySelector(".sidebar");
+            if (element.classList.contains("active")) {
+              element.classList.remove("active");
+            } else {
+              element.classList.add("active");
+            }
+          }}
+        >
+          <label className="btn btn-circle swap swap-rotate">
             <input type="checkbox" className="pointer-events-none" />
             <svg
               className="swap-off fill-current pointer-events-none"
@@ -127,4 +144,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);

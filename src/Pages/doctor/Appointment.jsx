@@ -94,7 +94,7 @@ const Appointment = () => {
                   as="textarea"
                   name="notes"
                   id="notes"
-                  class="textarea w-full focus:outline-none focus:border-primary border-2"
+                  className="textarea w-full focus:outline-none focus:border-primary border-2"
                   rows={"4"}
                 ></FastField>
                 <ErrorMessage

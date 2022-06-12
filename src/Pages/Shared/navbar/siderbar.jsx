@@ -1,13 +1,14 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import { menuBar } from "../../../Helpers/menubar";
 
 const Sidebar = () => {
+  console.log("sidebar");
   const clickHanlder = function (e) {
-    if (e.target.nextSibling.style.height !== "auto") {
-      e.target.nextSibling.style.height = "auto";
-      e.target.nextSibling.style.transform = "scaleY(1)";
+    if (e.target.nextSibling.classList.contains("active")) {
+      e.target.nextSibling.classList.remove("active");
     } else {
-      e.target.nextSibling.style.height = "0";
-      e.target.nextSibling.style.transform = "scaleY(0)";
+      e.target.nextSibling.classList.add("active");
     }
   };
   return (
@@ -27,10 +28,17 @@ const Sidebar = () => {
               onClick={clickHanlder}
               className="flex w-full justify-between items-center"
             >
-              <span className="flex space-x-4 items-center pointer-events-none">
-                <i className={`${menu.icon}`}></i>
-                <p>{menu.value}</p>
-              </span>
+              {!menu.submenu ? (
+                <Link to={"/"} className="flex space-x-4 items-center">
+                  <i className={`${menu.icon}`}></i>
+                  <p>{menu.value}</p>
+                </Link>
+              ) : (
+                <span className="flex space-x-4 items-center pointer-events-none">
+                  <i className={`${menu.icon}`}></i>
+                  <p>{menu.value}</p>
+                </span>
+              )}
               {menu.submenu && (
                 <i className="fa-solid fa-angle-down pointer-events-none"></i>
               )}
@@ -38,13 +46,18 @@ const Sidebar = () => {
             {menu.submenu && (
               <ul
                 tabIndex={menu.id}
-                className="overflow-hidden ease-in duration-300 submenu ml-8 mt-2 flex flex-col space-y-3"
+                className="nested-nav overflow-hidden ease-in duration-300 submenu ml-8 mt-2 flex flex-col space-y-3"
               >
-                {menu.submenu.map((item, idx) => (
-                  <li key={idx} className="text-sm font-bolder">
-                    {item.value}
-                  </li>
-                ))}
+                {menu.submenu.map((item, idx) => {
+                  return (
+                    <li key={idx} className="text-sm font-bolder">
+                      <Link to={item.link ? item.link : "/"}>
+                        {" "}
+                        {item.value}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             )}
           </li>
@@ -58,4 +71,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default React.memo(Sidebar);

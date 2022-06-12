@@ -1,3 +1,4 @@
+import React from "react";
 import Navbar from "./navbar/navbar";
 import Sidebar from "./navbar/siderbar";
 
@@ -10,7 +11,7 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
 // const Header = () => {
 //   return (
 //     <nav className="bg-[#F9FBFD] py-2">

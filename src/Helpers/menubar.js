@@ -23,15 +23,19 @@ export const menuBar = [
       icon: "fa-solid fa-user-doctor",
       submenu: [
         {
+          link: "/doctor/list",
           value: "All Doctors",
         },
         {
+          link: "/doctor/add",
           value: "Add Doctors",
         },
         {
+          link: "/doctor/appointment",
           value: "Appointment",
         },
         {
+          link: "/doctor/profile",
           value: "Doctors Profile",
         },
         {
@@ -45,12 +49,15 @@ export const menuBar = [
       icon: "fa-solid fa-bed-pulse",
       submenu: [
         {
+          link: "/patient/list",
           value: "Patient list",
         },
         {
+          link: "/patient/add",
           value: "Add patient",
         },
         {
+          link: "/",
           value: "Patient profile",
         },
         {
