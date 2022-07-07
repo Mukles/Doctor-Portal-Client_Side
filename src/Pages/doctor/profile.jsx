@@ -1,74 +1,86 @@
+import axios from "axios";
+import { useQuery } from "react-query";
+import { useLocation } from "react-router-dom";
 import BasicInfo from "../../Helpers/BasicInfo";
 import Layout from "../../Helpers/Layout";
-import Table from "../../Helpers/Table";
+import DoctorProfileSkeleton from "../../Skeleton/doctor/doctorProfile";
 
 const Profile = () => {
+  const location = useLocation();
+  const id = location?.pathname.split("/")[3];
+  const { isLoading, isError, data, error } = useQuery("doctorbyId", () =>
+    axios.get(`${process.env.REACT_APP_API_BASEURL}/doctor/${id}`)
+  );
+  console.log(data);
   return (
     <Layout>
       <div className="flex flex-col space-y-5">
         <BasicInfo>
+          {isLoading && <DoctorProfileSkeleton />}
           <div className="space-x-8 flex items-center justify-center py-5">
             <div className="">
               <div className="mt-4 border-2 border-yelllow-400 h-28 w-28 rounded-full p-1 flex items-center justify-center">
                 <img
                   className=" w-full h-full rounded-full"
-                  src="https://www.pixelwibes.com/template/ihealth/html/dist/assets/images/profile_av.png"
+                  src={`${
+                    process.env.REACT_APP_API_URL + "/" + data?.data.imgPath
+                  }`}
                   alt=""
                   srcSet=""
                 />
               </div>
               <span className="text-sm font-semibold text-[#9A9B9D] mt-2 block">
-                Doctor ID : PXL-0001
+                Doctor ID : {data?.data._id}
               </span>
             </div>
             <div className="content max-w-3xl flex flex-col space-y-3">
               <div className="">
-                <h1 className="text-xl font-semibold">Dr.Joan Wilson</h1>
-                <sm className="text-sm text-[#9A9B9D] font-semibold">
-                  Heart Surgeon,London, England
-                </sm>
+                <h1 className="text-xl font-semibold">
+                  {data?.data.firstName} {data?.data.lastName}
+                </h1>
+                <p className="text-sm text-[#9A9B9D] font-semibold">
+                  {data?.data.address}
+                </p>
               </div>
               <p className="text-semibold text-sm pb-5">
-                Duis felis ligula, pharetra at nisl sit amet, ullamcorper
-                fringilla mi. Cras luctus metus non enim porttitor sagittis. Sed
-                tristique scelerisque arcu id dignissim. Aenean sed erat ut est
-                commodo tristique ac a metus. Praesent efficitur congue orci.
-                Fusce in mi condimentum mauris maximus sodales. Quisque dictum
-                est augue, vitae cursus quam finibus in. Nulla at tempus enim.
-                Fusce sed mi et nibh laoreet consectetur nec vitae lacus.
+                {data?.data.description}
               </p>
               <table>
-                <tr>
-                  <td>
-                    <i className="fa-solid fa-phone mr-2 text-xl"></i>
-                    <span className="font-semibold text-sm">202-555-0174</span>
-                  </td>
-                  <td>
-                    <i className="fa-solid fa-envelope mr-2 text-xl"></i>
-                    <span className="font-semibold text-sm">
-                      joanwilson@gmail.com
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <i className="fa-solid fa-cake-candles mr-2 text-xl"></i>
-                    <span className="font-semibold text-sm">19/03/1980</span>
-                  </td>
-                  <td>
-                    <i className="fa-solid fa-address-card mr-2 text-xl"></i>
-                    <span className="font-semibold text-sm">
-                      2734 West Fork Street,EASTON.
-                    </span>
-                  </td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>
+                      <i className="fa-solid fa-phone mr-2 text-xl"></i>
+                      <span className="font-semibold text-sm">
+                        {data?.data.phone}
+                      </span>
+                    </td>
+                    <td>
+                      <i className="fa-solid fa-envelope mr-2 text-xl"></i>
+                      <span className="font-semibold text-sm">
+                        {data?.data.email}
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i className="fa-solid fa-cake-candles mr-2 text-xl"></i>
+                      <span className="font-semibold text-sm">
+                        {data?.data.dateOfBrith}
+                      </span>
+                    </td>
+                    <td>
+                      <i className="fa-solid fa-address-card mr-2 text-xl"></i>
+                      <span className="font-semibold text-sm">
+                        2734 West Fork Street,EASTON.
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
           </div>
         </BasicInfo>
-        <BasicInfo>
-          <Table />
-        </BasicInfo>
+        <BasicInfo>{/*<Table />*/}</BasicInfo>
       </div>
     </Layout>
   );

@@ -1,4 +1,7 @@
-import { Form, Formik } from "formik";
+import axios from "axios";
+import { ErrorMessage, FastField, Form, Formik } from "formik";
+import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 import * as yup from "yup";
 import BasicInfo from "../../Helpers/BasicInfo";
 import Button from "../../Helpers/button";
@@ -23,6 +26,7 @@ const AddPatient = () => {
       .max(255)
       .required("Email is required"),
     admitDate: yup.date().required("This field is requried"),
+    file: yup.string().required("This field is required"),
     admitTime: yup.string().required("Start time cannot be empty"),
     gender: yup.string().required("This feild is required"),
     paymentType: yup.string().required("This feild is required"),
@@ -35,6 +39,11 @@ const AddPatient = () => {
     selectedDoctor: yup.string().required("This feild is required"),
     advance: yup.number().required("This feild is requred"),
   });
+
+  const { isLoading, isError, data, error } = useQuery("dotoresCall", () =>
+    axios.get(`${process.env.REACT_APP_API_BASEURL}/doctor`)
+  );
+
   return (
     <Layout>
       <Title text={"Add Patients"} />
@@ -43,6 +52,7 @@ const AddPatient = () => {
           initialValues={{
             firstName: "",
             lastName: "",
+            file: "",
             phone: "",
             email: "",
             admitDate: "",
@@ -55,6 +65,37 @@ const AddPatient = () => {
             advance: "",
           }}
           validationSchema={schema}
+          onSubmit={(values) => {
+            const formData = new FormData();
+            Object.keys(values).forEach((key) => {
+              formData.append(key, values[key]);
+            });
+            const id = toast.loading("Please wait...");
+            axios({
+              method: "post",
+              url: "http://localhost:5000/patient/add",
+              data: formData,
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            })
+              .then((res) => {
+                return toast.update(id, {
+                  render: "Succesfull added",
+                  type: "success",
+                  isLoading: false,
+                  autoClose: 5000,
+                });
+              })
+              .catch((err) => {
+                return toast.update(id, {
+                  render: err?.response?.data.msg,
+                  type: "error",
+                  isLoading: false,
+                  autoClose: 5000,
+                });
+              });
+          }}
         >
           {(values) => (
             <Form>
@@ -88,8 +129,30 @@ const AddPatient = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row justify-center sm:space-x-4">
-                  <div className="w-1/2 flex items-center">
-                    <input type="file" name="form-control" id="" />
+                  <div className="w-full sm:w-1/2">
+                    <FastField name="file" className="">
+                      {({ form: { setFieldValue } }) => {
+                        return (
+                          <input
+                            className="block"
+                            name="file"
+                            type="file"
+                            id="file"
+                            onChange={(event) =>
+                              setFieldValue(
+                                "file",
+                                event.currentTarget.files[0]
+                              )
+                            }
+                          />
+                        );
+                      }}
+                    </FastField>
+                    <ErrorMessage
+                      className="text-sm w-full mt-2 text-red-700"
+                      component={"span"}
+                      name="file"
+                    ></ErrorMessage>
                   </div>
                   <CustomeRaido
                     title={"Gender"}
@@ -110,9 +173,9 @@ const AddPatient = () => {
                     title={"Select Payment Option"}
                   >
                     <option value="">Payment Option</option>
-                    <option value="1">Credit Card</option>
-                    <option value="2">Debit Card</option>
-                    <option value="3">Case Money</option>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Debit Cared">Debit Card</option>
+                    <option value="Case Money">Case Money</option>
                   </CustomSelect>
                   <CustomeRaido
                     title={"Insurance Information"}
@@ -139,10 +202,11 @@ const AddPatient = () => {
                 </div>
                 <div className="flex flex-col sm:flex-row justify-center sm:space-x-4">
                   <CustomSelect name={"selectedDoctor"} title={"Select Doctor"}>
-                    <option value="">Select Doctor</option>
-                    <option value="1">Vanessa Miller</option>
-                    <option value="2">Rebecca Hunter</option>
-                    <option value="3">Matt Clark</option>
+                    {data?.data.map((doctor) => (
+                      <option value={doctor._id}>
+                        {doctor.firstName} {doctor.lastName}
+                      </option>
+                    ))}
                   </CustomSelect>
                   <Inputfield
                     type={"text"}

@@ -13,11 +13,11 @@ const Sidebar = () => {
   };
   return (
     <div className="sidebar z-50 ease-out duration-300 absolute -left-full lg:fixed h-[calc(100vh-40px)]  w-72 bg-primary rounded-md lg:left-4 lg:top-6">
-      <div className="flex space-x-6 items-center justify-center mb-6 py-3 ">
-        <i className="fa-brands fa-accessible-icon text-4xl text-white"></i>
-        <span className="text-3xl text-white font-bold">I-Health</span>
+      <div className="flex space-x-6 items-center justify-center mb-6 py-6 ">
+        <i className="fa-brands fa-accessible-icon text-3xl text-white"></i>
+        <span className="text-2xl text-white font-bold">I-Health</span>
       </div>
-      <ul className="flex h-3/4 flex-grow flex-col space-y-5 text-white font-semibod py-3 px-4 overflow-y-auto">
+      <ul className="flex h-3/4 flex-grow flex-col space-y-4 text-white font-semibod py-3 px-4 overflow-y-auto">
         {menuBar.map((menu) => (
           <li
             className="flex-grow cursor-pointer text-lg dropdown"

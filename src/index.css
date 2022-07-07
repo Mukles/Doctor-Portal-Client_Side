@@ -24,6 +24,19 @@
     max-height: 10rem;
   }
 
+  @keyframes animation {
+    0% {
+      top: 0%;
+    }
+    100% {
+      top: -100%;
+    }
+  }
+
+  .animation {
+    animation: animation 1.5s 2s;
+  }
+
   @media only screen and (min-width: 1024px) {
     .background-img {
       background-image: url("http://localhost:3000//bg.jpg");
